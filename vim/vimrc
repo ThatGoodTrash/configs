@@ -1,0 +1,52 @@
+" Options
+set encoding=utf8
+set clipboard=unnamedplus " Enables the clipboard between Vim/Neovim and other applications.
+set completeopt=noinsert,menuone,noselect " Modifies the auto-complete menu to behave more like an IDE.
+set cursorline " Highlights the current line in the editor
+set hidden " Hide unused buffers
+set autoindent " Indent a new line
+set relativenumber " Shows the line numbers
+set splitbelow splitright " Change the split screen behavior
+set title " Show file title
+set guifont=hack_nerd_font:h11
+filetype plugin indent on   " Allow auto-indenting depending on file type
+syntax on
+set spell " enable spell check (may need to download language package)
+set ttyfast " Speed up scrolling in Vim`
+
+set wildmenu                        " visual autocomplete for command menu
+set showmatch                       " highlight matching !!important!!
+set tabstop=4                       " number of visual spaces per tab
+set softtabstop=4                   " number of spaces in tab while editing
+set shiftwidth=4                    " when indenting with >, user 4 spaces width
+set expandtab                       " tabs are spaces
+
+call plug#begin('~/.vim/plugged')       " vim-plug plugins will be downloaded there
+Plug 'sjl/badwolf'                      " colorscheme
+Plug 'vim-airline/vim-airline'          " nice colored bar the the bottom of the file 
+Plug 'tpope/vim-fugitive'               " git versioning and bar 
+Plug 'sheerun/vim-polyglot'             " syntax highlightning for different languages
+Plug 'ervandew/supertab'                " tab autocomplete
+Plug 'jiangmiao/auto-pairs'             " auto close brackets
+" Plug 'psf/black', {'tag': '19.10b0'}    " Black formatting
+Plug 'plasticboy/vim-markdown'          " Markdown folding 
+Plug 'ctrlpvim/ctrlp.vim'               " Allows for quick searching of files
+call plug#end()                         " vim-plugs should not be declared below this.
+
+colorscheme badwolf                     " set the colorscheme
+
+" Configuration for vim-markdown plugin
+autocmd FileType markdown let g:vim_markdown_new_list_item_indent = 0
+
+" Because we dont want to screw with PEP 8
+autocmd FileType python let g:black_linelength = 79         " max file length
+
+" Configuration for ctrlp.vim plugin
+autocmd VimEnter let g:ctrlp_working_path_mode = 'r'        " recursive
+autocmd VimEnter let g:ctrlp_max_depth = 5                  " max directory depth
+autocmd VimEnter let g:ctrlp_max_files = 100                " max files to parse
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/env/*,*/venv/*   " Ignore directories
+
+
+
+
