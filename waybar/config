@@ -1,89 +1,105 @@
-//====================================================================================================//
-// Waybar Configuration File                                                                          //
-//----------------------------------------------------------------------------------------------------//
-// Purpose: Creates a minimalistic (yet functional) waybar at                                         //
-// the top of the screen.                                                                             //
-// themes and colors, set the wallpaper, and more.                                                    //
-//                                                                                                    //
-// License: Creative Commons Attribution 4.0 International                                            //
-//                                                                                                    //
-// Credit:                                                                                            //
-// Battery section adapted from:                                                                      //
-// https://github.com/Egosummiki/dotfiles/blob/master/waybar/config                                   //
-//                                                                                                    //
-// Pipewire audio adapted from:                                                                       //
-// https://www.reddit.com/r/swaywm/comments/sks343/pwvolume_pipewire_volume_control_and_waybar_module //
-//====================================================================================================//
+// -*- mode: json -*-
 
 {
-    "layer": "top",
-    "position": "top",
-    "height": 36,
-    "spacing": 4,
-    "margin-top": 0,
-    "margin-bottom": 0,
+	"layer": "top",
+	"position": "top",
 
-    // Choose the order of the modules
-    "modules-center": ["sway/workspaces", "tray"],
-    "modules-left": ["custom/hostname"],
-    "modules-right": [ "custom/audio","network","battery","clock"],
+	"modules-left": [
+		"sway/workspaces",
+	],
+	"modules-center": [
+		"clock#1",
+		"clock#2",
+		"clock#3",
+	],
+	"modules-right": [
+		"pulseaudio",
+		"memory",
+		"cpu",
+		"battery",
+		"disk",
+		"tray"
+	],
 
-    // Configuration for individual modules
-     "sway/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": false,
-         "format": "{name}",
-    },
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
 
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10,
-    },
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"format": "{name}"
+	},
 
-    "clock": {
-        "timezone": "America/Detroit",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}",
-    },
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#3": {
+		"format": "{:%m-%d}",
+		"tooltip": false
+	},
 
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15,
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "⚡{capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""],
-    },
-
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " {signalStrength}%",
-        "format-ethernet": "Connected  ",
-        "tooltip-format": "{ifname}: {gwaddr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu",
-    },
-
-    "custom/audio": {
-        "format": "{}",
-        "signal": 8,
-        "interval": "once",
-        "exec": "/home/jay/.config/sway/audio.sh",
-        "on-click": "pavucontrol",
-    },
-
-    "custom/hostname": {
-        "format": "🖳  {}",
-        "exec": "/usr/bin/hostname -f",
-        "interval": "once",
-        "on-click": "/usr/bin/rxvt -e /usr/bin/htop",
-    },
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
+	"tray": {
+		"icon-size": 20
+	}
 }
