@@ -1,0 +1,13 @@
+[Unit]
+Description=wayvnc VNC server for Wayland
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/wayvnc -C /home/user/.config/wayvnc/config
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target
+

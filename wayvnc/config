@@ -1,0 +1,6 @@
+address=0.0.0.0
+enable_auth=true
+username=user
+password=password
+private_key_file=/home/user/.config/wayvnc/tls_key.pem
+certificate_file=/home/user/.config/wayvnc/tls_cert.pem
