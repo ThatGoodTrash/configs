@@ -21,6 +21,14 @@ set softtabstop=4                   " number of spaces in tab while editing
 set shiftwidth=4                    " when indenting with >, user 4 spaces width
 set expandtab                       " tabs are spaces
 
+" install plug.vim if not installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+source ~/.vim/autoload/plug.vim         " explicitly source plug.vim
+
 call plug#begin('~/.vim/plugged')       " vim-plug plugins will be downloaded there
 Plug 'sjl/badwolf'                      " colorscheme
 Plug 'vim-airline/vim-airline'          " nice colored bar the the bottom of the file 

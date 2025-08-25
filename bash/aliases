@@ -1,0 +1,11 @@
+# file listings
+alias ll='ls -al'
+alias lt='ls -latr'
+
+# git shortcuts
+alias gs='git status'
+alias gpull='git pull'
+alias gpush='git push'
+alias ga='git add'
+alias gc='git commit -m'
+
