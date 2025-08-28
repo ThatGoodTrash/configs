@@ -74,8 +74,10 @@ exec swayidle -w \
 
 # Screen locking (manual)
 set $lock_screen exec bash ~/.config/sway/lock_screen.sh
+# lock screen with Alt+l
 bindsym $alt+l exec $lock_screen
-
+# lock screen when laptop lid closed
+bindswitch --reload --locked lid:on exec $lock_screen
 
 #========================================#
 # Keyboard Shortcuts (Window Management) #

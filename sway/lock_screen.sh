@@ -6,7 +6,7 @@
 
 # Times the screen off and puts it to background
 swayidle \
-    timeout 10 'swaymsg "output * dpms off"' \
+    timeout 600 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' &
 
 # Locks the screen immediately
@@ -14,12 +14,12 @@ swaylock \
 	--ignore-empty-password \
 	--daemonize \
 	--indicator-caps-lock \
-	--indicator \
-	--clock \
-	--timestr " %Hh %Mm %Ss"\
-	--datestr " %b-%d-%Y" \
-	--show-failed-attempts \
-	--indicator-idle-visible
+#	--indicator \
+#	--clock \
+#	--timestr " %Hh %Mm %Ss"\
+#	--datestr " %b-%d-%Y" \
+#	--show-failed-attempts \
+#	--indicator-idle-visible
 
 # Kills last background task so idle timer doesn't keep running
 kill %%
